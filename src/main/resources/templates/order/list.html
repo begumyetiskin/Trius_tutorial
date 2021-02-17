@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Trius Online Tutorial - List Orders</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+    <link href="../../static/css/spring-core.css"
+          th:href="@{css/spring-core.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+<div class="container">
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+    <div th:if="${not #lists.isEmpty(orders)}">
+        <h2>Order List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Amount</th>
+                <th>Date</th>
+            </tr>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.name}"></td>
+                <td th:text="${order.description}"></td>
+                <td th:text="${order.price}"></td>
+                <td th:text="${order.amount}"></td>
+                <td th:text="${order.date}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
